@@ -29,6 +29,8 @@ module Portal.Services {
             this.filterCalendarView = this.filterCalendarView.bind(this);
 
             this.init();
+
+            //text asdasdasdasdasdasd
         }
 
         init() {
