@@ -30,7 +30,7 @@ module Portal.Services {
 
             this.init();
 
-            //text asdasdasdasdasdasd
+           
         }
 
         init() {
@@ -42,7 +42,7 @@ module Portal.Services {
             this.selectedId(0);
             $("#calendar").fullCalendar("rerenderEvents");
 
-            //hjfhgfghfh
+          
         }
 
         initUI() {
