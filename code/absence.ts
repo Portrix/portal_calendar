@@ -39,6 +39,8 @@ module Portal.Services {
         showAll() {
             this.selectedId(0);
             $("#calendar").fullCalendar("rerenderEvents");
+
+            //hjfhgfghfh
         }
 
         initUI() {
