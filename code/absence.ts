@@ -15,6 +15,8 @@ module Portal.Services {
 
         //test
 
+        //test2
+
         constructor() {
             $("#loader").addClass("active");
             this.events = [];
