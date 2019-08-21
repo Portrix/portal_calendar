@@ -1,0 +1,75 @@
+<script src="/SiteAssets/absence/moment.min.js"></script>
+<script src="/SiteAssets/absence/semantic.js" type="text/javascript"></script>
+<script src="/SiteAssets/absence/knockout-3.4.0.js"></script>
+<script src="/SiteAssets/absence/underscore-min.js"></script>
+<script src="/SiteAssets/absence/fullcalendar.min.js"></script>
+<script src="/SiteAssets/absence/gcal.min.js"></script>
+<script src="/SiteAssets/absence/ru.js"></script>
+<script src="/SiteAssets/absence/absence.js?rev=2"></script>
+<link rel="stylesheet" type="text/css" href="/SiteAssets/absence/fullcalendar.min.css">
+<link rel="stylesheet" type="text/css" href="/SiteAssets/absence/semantic.css">
+<style>
+    #dlgTitleBtns {
+        margin-right: 0 !important;
+    }
+
+    .top-menu {
+        width: 1000px !important;
+    }
+
+    #ctl00_PlaceHolderMain_WikiField {
+        margin-left: -190px;
+        -top: -20px;
+    }
+
+    .fc-title {
+        color: black;
+    }
+
+    .fc-content {
+        cursor: pointer;
+    }
+
+    .fc-list-item {
+        cursor: pointer;
+    }
+</style>
+<script>
+    $(function () {
+        $.model = new Portal.Services.Absence();
+        ko.applyBindings($.model);
+        $.model.initUI();
+    });
+</script>
+
+<div id="loader" class="ui inverted dimmer">
+    <div class="ui text loader">Загрузка</div>
+</div>
+
+<div class="kor-semantic" style="display: none;">
+    <h4 style="cursor: pointer;" class="ui header" data-bind="click: $.model.showAll">Календарь отсутвия руководителей
+    </h4>
+    <div class="ui seven doubling cards" style="width: 1000px !important">
+        <!-- ko foreach: $.model.managment -->
+        <div class="card">
+            <div class="image" style="cursor:pointer; width: auto;height: 160px;"
+                data-bind="style: { background: 'url(\'' + $data.imageUrl + '\')', backgroundSize: 'cover'}, click: $data.filter">
+            </div>
+            <div class="content">
+                <div class="header" style="font-size: 1em !important;cursor:pointer;"><span
+                        data-bind="text: $data.name, click: $data.filter"></span></div>
+            </div>
+        </div>
+        <!-- /ko -->
+    </div>
+    <br />
+    <div style="margin-left: 700px;">
+        <a style="background: #FEC5BA" class="ui empty circular label"></a>&nbsp;<span>Не доступен</span>
+        <a style="background: #D2F2C7" class="ui empty circular label"></a>&nbsp;<span>Доступен Спб</span>
+        <a style="background: #FFF9C0" class="ui empty circular label"></a>&nbsp;<span>Доступен Мск</span>
+    </div>
+
+    <!-- </div> -->
+    <br />
+</div>
+<div id='calendar'></div>
