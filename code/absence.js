@@ -20,7 +20,7 @@ var Portal;
                 this.showAll = this.showAll.bind(this);
                 this.openDispForm = this.openDispForm.bind(this);
                 this.filterCalendarView = this.filterCalendarView.bind(this);
-                this.init();
+                ExecuteOrDelayUntilScriptLoaded(this.init, "sp.js");
             }
             Absence.prototype.init = function () {
                 this.getManagers();

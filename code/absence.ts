@@ -5,6 +5,7 @@ module Portal.Services {
     declare var _spPageContextInfo: any;
     declare var ko: any;
     declare var moment: any;
+    declare var ExecuteOrDelayUntilScriptLoaded: any;
 
     export class Absence {
         public managment = ko.observableArray();
@@ -28,9 +29,7 @@ module Portal.Services {
             this.openDispForm = this.openDispForm.bind(this);
             this.filterCalendarView = this.filterCalendarView.bind(this);
 
-            this.init();
-
-           
+            ExecuteOrDelayUntilScriptLoaded(this.init, "sp.js");
         }
 
         init() {
