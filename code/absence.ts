@@ -13,10 +13,6 @@ module Portal.Services {
         public managersListItems: any;
         public selectedId = ko.observable();
 
-        //test
-
-        //test2
-
         constructor() {
             $("#loader").addClass("active");
             this.events = [];
