@@ -35347,3 +35347,60 @@ html.ios body {
 /*******************************
          Site Overrides
 *******************************/
+
+.newCard{
+  display:flex;
+  
+  justify-content: center;
+  
+  align-items: center;
+  padding-bottom:10px;
+  opacity:0.8;
+}
+
+
+ .newCard:hover{ 
+  opacity:1; 
+} 
+
+
+
+
+.outterNewCard{
+  display:flex;
+  flex-wrap:wrap;
+  padding-top:15px;
+}
+
+.showNone{
+  visibility: hidden;
+}
+
+.showTrue{
+  visibility: visible;
+ -webkit-animation: fadein 2s; 
+ -moz-animation: fadein 2s; 
+  -ms-animation: fadein 2s; 
+  -o-animation: fadein 2s; 
+  animation: fadein 2s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+
+
+@keyframes fadein{
+  from { opacity: 0;}
+  to { opacity: 1;}
+}
+
+.newColor{
+  color:red;
+}
+
+.selectedManagerText{
+  margin-bottom:15px;
+}

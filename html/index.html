@@ -2,10 +2,16 @@
 <script src="/SiteAssets/absence/semantic.js" type="text/javascript"></script>
 <script src="/SiteAssets/absence/knockout-3.4.0.js"></script>
 <script src="/SiteAssets/absence/underscore-min.js"></script>
-<script src="/SiteAssets/absence/fullcalendar.min.js"></script>
+
+
+<!-- <script src="/SiteAssets/absence/fullcalendar.min.js"></script> -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.js"></script>
+
+
 <script src="/SiteAssets/absence/gcal.min.js"></script>
 <script src="/SiteAssets/absence/ru.js"></script>
-<script src="/SiteAssets/absence/absence.js?rev=2"></script>
+<script src="/SiteAssets/absence/absence.js?rev=3"></script>
 <link rel="stylesheet" type="text/css" href="/SiteAssets/absence/fullcalendar.min.css">
 <link rel="stylesheet" type="text/css" href="/SiteAssets/absence/semantic.css">
 <style>
@@ -35,13 +41,19 @@
     }
 </style>
 <script>
+   
     $(function () {
         $.model = new Portal.Services.Absence();
         ko.applyBindings($.model);
         $.model.initUI();
     });
 </script>
+  <script>
 
+     </script>
+
+
+<!--voksv-sp13-test/Lists/Absence/NewForm.aspx-->
 <div id="loader" class="ui inverted dimmer">
     <div class="ui text loader">Загрузка</div>
 </div>
@@ -49,14 +61,14 @@
 <div class="kor-semantic" style="display: none;">
     <h4 style="cursor: pointer;" class="ui header" data-bind="click: $.model.showAll">Календарь отсутвия руководителей
     </h4>
-    <div class="ui seven doubling cards" style="width: 1000px !important">
+    <div class="ui seven doubling cards outterNewCard" style="width: 1000px !important">
         <!-- ko foreach: $.model.managment -->
-        <div class="card">
-            <div class="image" style="cursor:pointer; width: auto;height: 160px;"
+        <div class="newCard" data-bind="attr : {id: 'newCard_' + $data.userId}">
+            <div class="image avatar ui middle aligned" style="width:45px; height:45px; border-radius:50% !important; cursor:pointer "
                 data-bind="style: { background: 'url(\'' + $data.imageUrl + '\')', backgroundSize: 'cover'}, click: $data.filter">
             </div>
-            <div class="content">
-                <div class="header" style="font-size: 1em !important;cursor:pointer;"><span
+            <div class="content" style="width:250px;">
+                <div class="header" style="margin-left:5px; font-size: 1em !important;cursor:pointer;"><span
                         data-bind="text: $data.name, click: $data.filter"></span></div>
             </div>
         </div>
@@ -72,4 +84,12 @@
     <!-- </div> -->
     <br />
 </div>
-<div id='calendar'></div>
+<div class="outterCalendar" data-bind="attr: {class: $.model.showNone}" >
+    <div class="selectedManagerText">
+    <h3  data-bind="text:'Расписание: ' + $.model.selectedName()"></h3>
+    <span data-bind="visible: $.model.isAdmin"><button type="button" data-bind="click: $.model.openDialog" class="fc-button fc-state-default fc-corner-right">Создать</button></span>
+    </div>
+<div id='calendar' ></div>
+</div>
+
+
