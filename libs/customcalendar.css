@@ -1,0 +1,172 @@
+
+    #dlgTitleBtns {
+        margin-right: 0 !important;
+    }
+    .top-menu {
+        width: 1000px !important;
+    }
+    #ctl00_PlaceHolderMain_WikiField {
+        margin-left: -190px;
+        -top: -20px;
+    }
+    .fc-title {
+        color: black;
+    }
+    .fc-content {
+        cursor: pointer;
+    }
+    .fc-list-item {
+        cursor: pointer;
+    }
+
+    .headTitle{
+        
+        margin-top:20px;
+    }
+    .content{
+        width:250px;
+    }
+    .header{
+        margin-left:5px;
+         font-size: 1em !important;
+         cursor:pointer;
+    }
+    .statusIcons{
+        margin-left: 700px;
+    }
+    #notAvailable{
+        background: #FEC5BA;
+    }
+    #availableSpb{
+        background: #D2F2C7;
+    }
+    #availableMsk{
+        background: #FFF9C0;
+    }
+.newCard{
+    display:flex;
+    width:333px;
+    justify-content: center;
+    font-weight: normal;
+    font-size:12px;
+    letter-spacing:1px;
+    align-items: center;
+    padding-bottom:10px;
+    opacity:0.9;
+    font-family:  Arial, Helvetica, sans-serif;
+  }
+  
+  .customAvatar{
+    width:45px !important; 
+    height:45px !important; 
+    border-radius:50% !important;
+     cursor:pointer !important;
+  }
+  
+   .newCard:hover{ 
+    opacity:1; 
+    color:#46809b;
+    transform: scale(1.07,1.07);
+    -webkit-transform: scale(1.07,1.07);
+    -moz-transform: scale(1.07,1.07);
+     -ms-transform: scale(1.07,1.07);
+     -o-transform: scale(1.07,1.07);
+  } 
+  
+  
+  
+  
+  .outterNewCard{
+    display:flex;
+    flex-wrap:wrap;
+    padding-top:15px;
+    width: 1000px;
+    
+  }
+  
+  .showNone{
+    visibility: hidden;
+  }
+  
+  .showTrue{
+    visibility: visible;
+   -webkit-animation: fadein 2s; 
+   -moz-animation: fadein 2s; 
+    -ms-animation: fadein 2s; 
+    -o-animation: fadein 2s; 
+    animation: fadein 2s;
+  }
+  
+  @keyframes fadein {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+  }
+  @-moz-keyframes fadein{
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @-webkit-keyframes fadein{
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @-ms-keyframes fadein{
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @-o-keyframes fadein{
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  .newColor{
+    color:rgb(68, 204, 129);
+    transform: scale(1.3,1.3);
+    -webkit-transform: scale(1.3,1.3);
+    -moz-transform: scale(1.3,1.3);
+     -ms-transform: scale(1.3,1.3);
+     -o-transform: scale(1.3,1.3);
+     opacity:1;
+  }
+  .newColor:hover{
+    
+    color:rgb(68, 204, 129);
+    transform: scale(1.3,1.3);
+    -webkit-transform: scale(1.3,1.3);
+    -moz-transform: scale(1.3,1.3);
+     -ms-transform: scale(1.3,1.3);
+     -o-transform: scale(1.3,1.3);
+  }
+  
+  .selectedManagerText{
+    margin-top:10px;
+    margin-bottom:5px;
+    width:1000px;
+    display:flex; 
+    justify-content: space-between;
+  }
+  .selectedManagerButtons{
+    width:1000px;
+    display:flex; 
+    justify-content: space-between; 
+    margin-bottom:20px; 
+  }
+  
+  .fc-title{
+    font-size:12px;
+  }
+  .iconPic{
+    padding:2px;
+  }
+  
+  .iconPic:hover{
+    transform: scale(1.2,1.2);
+    -webkit-transform: scale(1.2,1.2);
+    -moz-transform: scale(1.2,1.2);
+     -ms-transform: scale(1.2,1.2);
+     -o-transform: scale(1.2,1.2);
+  }
+  
+  .fc-center h2{
+    color:grey;
+  }
+
+  

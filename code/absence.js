@@ -18,7 +18,7 @@ var Portal;
                 this.events = [];
                 this.selectedId(0);
                 this.init = this.init.bind(this);
-                this.openDialog = this.openDialog.bind(this);
+                this.openNewFormDialog = this.openNewFormDialog.bind(this);
                 this.initUI = this.initUI.bind(this);
                 this.getManagers = this.getManagers.bind(this);
                 this.getManagersSuccessCallback = this.getManagersSuccessCallback.bind(this);
@@ -63,16 +63,45 @@ var Portal;
                 alert('Request failed. ' + args.get_message() +
                     '\n' + args.get_stackTrace());
             };
-            Absence.prototype.openDialog = function () {
-                var options = {
-                    url: this.newFormUrl,
-                    title: 'Please complete all required fields',
-                    allowMaximize: false,
-                    showClose: true,
-                    width: 550,
-                    height: 400
+            Absence.prototype.openNewFormDialog = function (id) {
+                var options = new SP.UI.DialogOptions();
+                options.title = "Создать:";
+                options.url = this.newFormUrl;
+                options.allowMaximize = false;
+                options.width = 550;
+                options.height = 400;
+                options.dialogReturnValueCallback = function (result, target) {
+                    if (result == 1) {
+                        var clientContext = SP.ClientContext.get_current();
+                        var oList = clientContext.get_web().get_lists().getByTitle('Absence');
+                        var camlQuery = new SP.CamlQuery();
+                        camlQuery.set_viewXml("<View><Query><Where>"
+                            + "</Where>"
+                            + "<OrderBy><FieldRef Name='ID' Ascending='False' /></OrderBy>"
+                            + "</Query>"
+                            + "<RowLimit>1</RowLimit>"
+                            + "</View>");
+                        var items = oList.getItems(camlQuery);
+                        clientContext.load(items);
+                        clientContext.executeQueryAsync(function () {
+                            var count = items.get_count();
+                            //should only be 1
+                            if (count > 1) {
+                                throw "Something is wrong. Should only be one latest list item / doc";
+                            }
+                            var enumerator = items.getEnumerator();
+                            enumerator.moveNext();
+                            var item = enumerator.get_current();
+                            var ev = new Event(item);
+                            console.log(ev);
+                            $('#calendar').fullCalendar('renderEvent', ev);
+                        }, function () {
+                            //failure handling comes here
+                            alert("failed");
+                        });
+                    }
                 };
-                SP.SOD.execute('sp.ui.dialog.js', 'SP.UI.ModalDialog.showModalDialog', options);
+                SP.UI.ModalDialog.showModalDialog(options);
             };
             Absence.prototype.init = function () {
                 this.getManagers();
@@ -81,7 +110,10 @@ var Portal;
             };
             Absence.prototype.showAll = function () {
                 this.selectedId(0);
+                $(".newCard").removeClass('newColor');
                 $("#calendar").fullCalendar("rerenderEvents");
+                $.model.showNone('showTrue');
+                $.model.selectedName('всех руководителей.');
             };
             Absence.prototype.initUI = function () {
                 $('.ui.dropdown').dropdown();
@@ -186,11 +218,11 @@ var Portal;
                         var deleteListItem = "$.model.deleteListItem(" + event.id + ")";
                         var icoUrl = _spPageContextInfo.webAbsoluteUrl;
                         var viewButtonHtml = '<span class="editLink" style="cursor:pointer;" onclick="' + onclickFuncView +
-                            '"><img src="' + icoUrl + '/SiteAssets/absence/view.svg" width="20px" height="20px"/></span>';
+                            '"><img class="iconPic" src="' + icoUrl + '/SiteAssets/absence/view.svg" width="20px" height="20px" /></span>';
                         if (_this.isAdmin()) {
-                            viewButtonHtml += '<span class="editLink" style="cursor:pointer; " onclick="' +
-                                onclickFuncEdit + '"><img src="' + icoUrl + '/SiteAssets/absence/pencil.svg" width="20px" height="20px"/></span>' +
-                                '<span class="deleteLink" style="cursor:pointer;" onclick="' + deleteListItem + '"><img src="' + icoUrl + '/SiteAssets/absence/delete.svg" width="20px" height="20px"/></span>';
+                            viewButtonHtml += '<span class="editLink" style="cursor:pointer;" onclick="' +
+                                onclickFuncEdit + '"><img class="iconPic" src="' + icoUrl + '/SiteAssets/absence/pencil.svg" width="20px" height="20px"/></span>' +
+                                '<span class="deleteLink" style="cursor:pointer;" onclick="' + deleteListItem + '"><img class="iconPic" src="' + icoUrl + '/SiteAssets/absence/delete.svg" width="20px" height="20px"/></span>';
                         }
                         a.insertAdjacentHTML('beforeend', viewButtonHtml);
                     },
@@ -275,7 +307,6 @@ var Portal;
                 calEvent.status = this.status;
                 calEvent.color = this.color;
                 calEvent.start = moment(this.start);
-                //calEvent.end = moment(this.end).add(1,'seconds');
                 calEvent.end = $.fullCalendar.moment(this.end).add(10, 'seconds');
                 return calEvent;
             };
